@@ -11,7 +11,6 @@ class communityPage extends State<community_page>{
   @override
   click1(){
     /*Navigator.push(context,MaterialPageRoute(builder: (_)=>communityExPandCard("Bangdream")));*/
-
       Navigator.of(context).push(
         PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation,
