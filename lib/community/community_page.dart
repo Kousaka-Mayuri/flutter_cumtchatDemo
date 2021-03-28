@@ -10,8 +10,42 @@ class community_page extends StatefulWidget{
 class communityPage extends State<community_page>{
   @override
   click1(){
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context)=>communityExPandCard()));
+    /*Navigator.push(context,MaterialPageRoute(builder: (_)=>communityExPandCard("Bangdream")));*/
+
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            //目标页面
+            return communityExPandCard("Bangdream");
+          },
+          //打开新的页面用时
+          transitionDuration: Duration(milliseconds: 800),
+          //关半页岩用时
+          reverseTransitionDuration: Duration(milliseconds: 800),
+          //过渡动画构建
+          transitionsBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child,
+              ) {
+            //渐变过渡动画
+            return FadeTransition(
+              // 透明度从 0.0-1.0
+              opacity: Tween(begin: 0.0, end: 1.0).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  //动画曲线规则，这里使用的是先快后慢
+                  curve: Curves.fastOutSlowIn,
+                ),
+              ),
+              child: child,
+            );
+          },
+        ),
+      );
+
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +63,7 @@ class communityPage extends State<community_page>{
           child: Column(
             children:<Widget> [
                 Container(
+
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -44,15 +79,15 @@ class communityPage extends State<community_page>{
                           thickness: 2.h,
                       ),
                       Container(
-                        alignment: Alignment.center,
+                          margin: EdgeInsets.fromLTRB(20.w, 20.h, 0, 0),
                         width: 350.w,
                            child: Wrap(
-                             alignment: WrapAlignment.start,
+
                               children:<Widget> [
                                 communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
-                                communityIcon('images/yuanshen.jpg', click1, " 原神"),
+                                /*communityIcon('images/yuanshen.jpg', click1, " 原神"),
                                 communityIcon('images/steam.jpg', click1, " Steam"),
-                                communityIcon('images/steam.jpg', click1, " Steam"),
+                                communityIcon('images/steam.jpg', click1, " Steam"),*/
                               ],
                             )
                       ),
@@ -79,7 +114,7 @@ class communityPage extends State<community_page>{
                         width: 350.w,
                         child: Wrap(
                           children: <Widget>[
-                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
+                            /*communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
                             communityIcon('images/yuanshen.jpg', click1, " 原神"),
                             communityIcon('images/yuanshen.jpg', click1, " 原神"),
                             communityIcon('images/yuanshen.jpg', click1, " 原神"),
@@ -87,7 +122,7 @@ class communityPage extends State<community_page>{
                             communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
                             communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
                             communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
-                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
+                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),*/
 
                           ],
                         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/home/home_page.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,7 @@ class clickButton extends StatelessWidget{
         child: Text(text,style: loginText),
         color: loginButtonColor,
         onPressed: (){
-         click();
+          click();
         },
       ),
     );
@@ -44,6 +45,7 @@ class homeIconButton extends StatelessWidget{
           IconButton(
             icon: Image.asset(src),
             onPressed: (){
+
             },
           ),
           Text(name,style: actText)
@@ -66,6 +68,7 @@ class homeClickButton extends StatelessWidget{
       child: IconButton(
             icon: Image.asset(src),
             onPressed: (){
+
               click();
             },
           ),

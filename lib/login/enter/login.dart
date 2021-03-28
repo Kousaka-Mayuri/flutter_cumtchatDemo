@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/data/userData.dart';
+import 'package:flutter_cumtchat/home/home_page.dart';
+import 'package:flutter_cumtchat/home/tabBars/activity.dart';
+import 'package:flutter_cumtchat/main_page.dart';
 import 'package:flutter_cumtchat/module/button.dart';
 import 'package:flutter_cumtchat/module/textField.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,8 +31,13 @@ class enter_page extends State<enter>{
     );
     print(response.data);
   }
+  goHome() {
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(builder: (context)=>main_page()),(route)=> route == null);
+  }
   @override
   Widget build(BuildContext context) {
+
     return Container(
       alignment: Alignment.center,
       width: 350.w,
@@ -40,6 +48,7 @@ class enter_page extends State<enter>{
           loginTextField("请输入账号",false,usernameControl,getUsername),
           loginTextField("请输入密码",true,passwordControl,getPassword),
           clickButton("登录",loginHttp),
+          clickButton("试用",goHome)
         ],
       ),
     );

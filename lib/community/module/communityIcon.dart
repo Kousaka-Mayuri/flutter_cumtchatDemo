@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_cumtchat/community/community_expandPage.dart';
 class communityIcon extends StatelessWidget{
   final String imgSrc;
   final Function() click;
@@ -9,28 +10,27 @@ class communityIcon extends StatelessWidget{
   const communityIcon(this.imgSrc,this.click,this.text,{Key key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(15.w, 5.h, 15.w, 0),
-      child: Column(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-
+    return GestureDetector(
+      child:  Hero(
+          tag: text,
+          child: Material(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: 80.w,
+                  height: 80.w,
+                  child:IconButton(
+                    icon: Image.asset(imgSrc,
+                      fit: BoxFit.cover,),
+                  ),
+                ),
+                Text(text)
+              ],
             ),
-            width: 80.w,
-            height: 80.w,
-            child: Container(
-              child: IconButton(
-                icon: Image.asset(imgSrc),
-                onPressed: (){
-                  click();
-                },
-              ),
-            ),
-          ),
-          Text(text)
-        ],
-      ),
+          )),
+      onTap: (){
+        click();
+      },
     );
   }
 }

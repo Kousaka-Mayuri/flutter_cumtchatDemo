@@ -17,24 +17,22 @@ class _activity extends State<activity>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor("#F2F2F4"),
         body:ScrollConfiguration(
           behavior: CusBehavior1(),
           child: CustomScrollView(
             slivers:<Widget> [
               SliverToBoxAdapter(
                 child: Container(
-                  decoration: BoxDecoration(
-                  ),
-                    margin: EdgeInsets.fromLTRB(0, 35.h, 0, 0),
-                    padding: EdgeInsets.all(3.5.h),
+                    margin: EdgeInsets.fromLTRB(0, 15.h, 0, 0),
                     width: 315.w,
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(35.h),
+                        borderRadius: BorderRadius.circular(0.h),
                         child:Container(
                           child: Column(
                             children: <Widget>[
                               Container(
-                                width: 315.w,
+                                width: 330.w,
                                 child: AspectRatio(
                                   aspectRatio: 16/9,
                                   child: Swiper(
@@ -50,11 +48,14 @@ class _activity extends State<activity>
                                 ),
                               ),
                               Container(
+                                
+                                alignment: Alignment.center,
                                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                 color: tabBar,
                                   height: 100.h,
-                                  width: 315.w,
+                                  width: 330.w,
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children:<Widget> [
                                         homeIcon('images/homeIcon/groupNew.png',
                                             70.h,78.75.w,"组队"),
@@ -80,7 +81,7 @@ class _activity extends State<activity>
                         /*constraints: BoxConstraints(maxWidth: scrWidth*0.9),//限制宽长高*/
                         child:
                             Container(
-                                    padding: EdgeInsets.all(10.w),
+                                    padding: EdgeInsets.all(7.w),
                                     child: ScrollConfiguration(
                                       behavior: CusBehavior(),
                                       child:ListView.builder(

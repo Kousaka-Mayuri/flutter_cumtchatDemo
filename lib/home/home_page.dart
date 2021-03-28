@@ -6,7 +6,6 @@ import 'package:flutter_cumtchat/home/tabBars/question.dart';
 import 'package:flutter_cumtchat/home/tabBars/talk.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
 class home_page extends StatefulWidget{
   @override
@@ -32,7 +31,7 @@ with SingleTickerProviderStateMixin{
 
   void initState() {
     super.initState();
-    _tabController = new TabController(length: 3, vsync: this);
+    _tabController = new TabController(initialIndex:0,length: 3, vsync: this);
     _tabController.addListener(() {
       print(_tabController.index);
     });
@@ -47,17 +46,19 @@ with SingleTickerProviderStateMixin{
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize:  Size.fromHeight(40.h),//设置appBar高度,
+        preferredSize:  Size.fromHeight(50.h),//设置appBar高度,
         child:AppBar(
           elevation: 1,
           title: Container(
+            alignment: Alignment.center,
               width: 350.w,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  /*Container(
                       key: searchIcon,
                       margin: EdgeInsets.fromLTRB(17.5.w, 0, 0, 0),
-                      child: Icon(Icons.search,color: Colors.black,)),
+                      child: Icon(Icons.search,color: Colors.black,)),*/
                   /*Container(
                     alignment: Alignment.center,
                     width: 175.w,
@@ -66,7 +67,6 @@ with SingleTickerProviderStateMixin{
                     child: Image.asset('images/FlyingText.png',fit: BoxFit.cover,),
                   )*/
                   Container(
-                    width: 250.w,
                     alignment: Alignment.center,
                     child: TabBar(
                       controller: _tabController,

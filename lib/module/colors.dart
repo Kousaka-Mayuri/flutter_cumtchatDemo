@@ -13,7 +13,7 @@ class HexColor extends Color {
 }
 
 Color loginButtonColor = HexColor("#00dc9c");//登录按钮颜色·
-Color loginTFColor = HexColor("#f2f2f2");//灰色颜色
+Color loginTFColor = HexColor("#F2F2F4");//灰色颜色
 Color homeColor = HexColor("#fafafa");
 Color tabBar = HexColor("#ffffff");//纯白色
 Color black = HexColor("#000000");//纯黑色

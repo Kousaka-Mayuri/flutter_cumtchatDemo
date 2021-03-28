@@ -56,7 +56,7 @@ class _actExpand extends State<actExpansion>
                         fit: BoxFit.cover,),
                     ),
                     Container(
-                      width: 120.w,
+                      width: 110.w,
                       alignment: Alignment.center,
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Column(
