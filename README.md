@@ -1,16 +1,4 @@
-# flutter_cumtchat
+一个矿大校园社交APP
 
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+正在尝试做一个校园社交软件，目前页面完成度大概在60%.
+目前登录页面点不进去页面，因为我在调试接口，如果需要看后面的界面可以加一下跳转路由代码
