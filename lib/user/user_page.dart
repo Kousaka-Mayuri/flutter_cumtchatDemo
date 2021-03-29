@@ -4,9 +4,9 @@ import 'package:flutter_cumtchat/login/login_page.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/userCard.dart';
 import 'package:flutter_cumtchat/user/ListView/settings_page.dart';
-import 'package:flutter_cumtchat/user/ListView/userInfo_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_cumtchat/module/button.dart';
 class user_page extends StatefulWidget{
   @override
   _user_page createState() => _user_page();
@@ -42,6 +42,9 @@ class _user_page extends State<user_page>
     });
     print(_imagePath.toString());
   }
+  goSetting(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> settings_page()));
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -52,12 +55,56 @@ class _user_page extends State<user_page>
                   child: userCard(),
             )
       ),
-      body:
-Container(
+      body:Container(
+        width: 350.w,
+        color: Colors.white,
+        child: Column(
+          children: [
+            Divider(
+              color: Colors.grey,
+              height: 1.w,
+              thickness: 0.2.w,
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(30.w, 15.h, 0, 10.h),
+              alignment: Alignment.centerLeft,
+              child: Text("服务"
+              ,style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.bold
+                ),),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Wrap(
+                children:<Widget> [
+                  textButton("images/userPage/issue.png",
+                  name: "发布",),
+                  textButton("images/userPage/sign.png",
+                  name: "签到",),
+                  textButton("images/userPage/collect.png",
+                  name: "收藏",),
+                  Hero(
+                    tag: 'settings',
+                    child: Material(
+                      color: Colors.white,
+                      child: textButton("images/userPage/setting.png",
+                        name: "设置",
+                        click: goSetting,),
+                    ),
+                  ),
+                  textButton('images/userPage/invite.png',
+                  name: "邀请",)
+                ],
+              ),
+            ),
+          ],
+        ),
+      )
+     /* Container(
         alignment: Alignment.center,
         child: Column(
           children: [
-
               Container(
                 margin: EdgeInsets.fromLTRB(0, 70.h, 0, 0),
                 width: 315.w,
@@ -123,7 +170,7 @@ Container(
               )
           ],
         ),
-      ),
+      ),*/
     );
   }
 }

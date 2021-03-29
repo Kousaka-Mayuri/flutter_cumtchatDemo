@@ -11,10 +11,7 @@ class communityIcon extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child:  Hero(
-          tag: text,
-          child: Material(
-            child: Column(
+      child:Column(
               children: <Widget>[
                 Container(
                   width: 80.w,
@@ -27,7 +24,7 @@ class communityIcon extends StatelessWidget{
                 Text(text)
               ],
             ),
-          )),
+
       onTap: (){
         click();
       },
@@ -44,7 +41,6 @@ class communityExpandIcon extends StatelessWidget{
     return Container(
       alignment: Alignment.center,
       height: 100.h,
-      width: 350.w,
       child: Row(
         children:<Widget> [
           Container(
@@ -62,7 +58,6 @@ class communityExpandIcon extends StatelessWidget{
           Container(
             alignment: Alignment.centerLeft,
             height: 60.w,
-            width: 260.w,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

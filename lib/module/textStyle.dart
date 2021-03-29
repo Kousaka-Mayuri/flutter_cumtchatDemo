@@ -49,6 +49,19 @@ TextStyle questionText = new TextStyle(
 
 );
 
-var actText = TextStyle(fontSize: 16);//活动页按钮
+TextStyle userPageText = new TextStyle(
+        fontSize: 14.sp,
+        color: HexColor("#6E6E6E")
+);
+TextStyle alterText = new TextStyle(
+    color: Colors.black,
+    fontSize: 13.sp
+);
+
+TextStyle userDataText = new TextStyle(
+    color: HexColor("#A7A7A7"),
+    fontSize: 13.sp
+);
+var actText = TextStyle(fontSize: 16.sp);//活动页按钮
 var loginText = TextStyle(color: Colors.white,fontSize: 18);//登录按钮样式
 var skipText = TextStyle(color: Colors.white);//启动页跳过按钮样式

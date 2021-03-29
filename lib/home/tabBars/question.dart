@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/home/tabBars/module/questionModule.dart';
+import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -13,6 +14,7 @@ class _question extends State<question>{
   Widget build(BuildContext context) {
     return Scaffold(
       body:Container(
+        color: backgroundColor,
         child: ScrollConfiguration(
           behavior: CusBehavior(),
           child: ListView.builder(

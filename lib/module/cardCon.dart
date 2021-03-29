@@ -14,7 +14,6 @@ List<String> pic =[
 String likeImg ='images/shoucang.png';
 bool isLike = false;
 class actCard extends StatefulWidget{
-
   const actCard({Key key});
   @override
   _act createState() => _act();
@@ -132,181 +131,215 @@ class _act extends State<actCard>{
       highlightColor: Colors.transparent,
       radius: 0,
       onTap: (){
-        goExpansion();
-      },
-      child: Container(
-          margin: EdgeInsets.fromLTRB(0,8.h, 0, 0),
-          decoration: BoxDecoration(
-            //boxShadow:[actConShadow],
-              color: HexColor("#FEFEFE"),
-              borderRadius: BorderRadius.circular(6.w)
-          ),
-          width: 280.w,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                height: 20.h,
-              ),
-              Row(
-                children: <Widget>[
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) {
+                //目标页面
+                return actExpansion();
+              },
+              //打开新的页面用时
+              transitionDuration: Duration(milliseconds: 800),
+              //关半页岩用时
+              reverseTransitionDuration: Duration(milliseconds: 800),
+              //过渡动画构建
+              transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child,
+                  ) {
+                //渐变过渡动画
+                return FadeTransition(
+                  // 透明度从 0.0-1.0
+                  opacity: Tween(begin: 0.0, end: 1.0).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      //动画曲线规则，这里使用的是先快后慢
+                      curve: Curves.fastOutSlowIn,
+                    ),
+                  ),
+                  child: child,
+                );
+              },
+            ),
+          );
 
+      },
+      child:Hero(
+        tag: "activity",
+        child:  Material(
+          child: Container(
+              margin: EdgeInsets.fromLTRB(0,8.h, 0, 0),
+              decoration: BoxDecoration(
+                //boxShadow:[actConShadow],
+                  color: HexColor("#FEFEFE"),
+                  borderRadius: BorderRadius.circular(6.w)
+              ),
+              width: 280.w,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
                   Container(
-                    margin: EdgeInsets.fromLTRB(17.5.w, 0, 0, 0),
-                    width: 52.5.w,
-                    height:56.h,
-                    child: Image.asset('images/touxiang.jpg'),
-                  ),//头像处
-                  Column(
+                    height: 20.h,
+                  ),
+                  Row(
                     children: <Widget>[
-                      Text("大W的幻想"),
-                      Divider(height: 10.h,),
-                      Text("一个zz")
+                      Container(
+                        margin: EdgeInsets.fromLTRB(17.5.w, 0, 0, 0),
+                        width: 52.5.w,
+                        height:56.h,
+                        child: Image.asset('images/touxiang.jpg'),
+                      ),//头像处
+                      Column(
+                        children: <Widget>[
+                          Text("大W的幻想"),
+                          Divider(height: 10.h,),
+                          Text("一个zz")
+                        ],
+                      )
                     ],
                   )
-                ],
-              )
-              ,//头像信息处
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 17.5.h, 0, 0),
-                child: Text("今天看了好多风景，特别好看呀！！！！"),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0,17.5.h, 0, 0),
-                height: 70.h,
-                width: 315.w,
-                child: Row(
-                  children: <Widget>[
-                    imageCon("images/scr1.jpg"),
-                    imageCon("images/scr2.jpg"),
-                    imageCon("images/scr3.jpg")
-                  ],
-                ),
-              )
-              ,//图片处
-
-              Container(
-                margin: EdgeInsets.fromLTRB(35.w, 7.h, 0, 0),
-                height: 70.h,
-                width: 297.5.w,
-                child: Row(
-                  children: <Widget>[
-                    homeClickButton("images/fenxiang.png",emptyFun),
-                    homeClickButton("images/pinglun.png",comment),
-                    homeClickButton(likeImg,beLike),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(50.w, 0, 0, 0),
-                alignment: Alignment.centerLeft,
-                child: InkWell(
-                  onTap: (){
-                    showModalBottomSheet(context: context,
-                        builder: (ctx){
-                          return StatefulBuilder(
-                              builder: (context,ctx2)=>
-                                  Container(
-
-                                    /*decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(topLeft: Radius.circular(20.w),topRight: Radius.circular(20.w))
-                          ),*/
-                                    color: Colors.white,
-                                    child:Stack(
-                                      children: [
-                                        Positioned(
-                                            child: Container(
-                                                margin: EdgeInsets.fromLTRB(20.w, 20.h, 20.w,20.h),
-                                                child: ScrollConfiguration(
-                                                  behavior: CusBehavior(),
-                                                  child: ListView.builder(
-                                                      itemCount: 10,
-                                                      itemBuilder:(BuildContext context,int index){
-                                                        return Row(
-                                                          children: [
-                                                            Container(
-                                                              alignment: Alignment.center,
-                                                              width: 290.w,
-                                                              height: 40.h,
-                                                              child: ListTile(
-                                                                leading: Icon(Icons.perm_contact_cal_outlined),
-                                                                title: Text("天气不错啊"),
-                                                                subtitle: Text("我是zz"),
-                                                                onTap: (){
-                                                                  comment();
-                                                                },
-                                                                onLongPress: (){
-                                                                  ClipboardData data = new ClipboardData(text:"这是你复制的内容");
-                                                                  Clipboard.setData(data);
-                                                                  Fluttertoast.showToast(
-                                                                    timeInSecForIosWeb: 1,
-                                                                    msg: "已复制该内容",
-                                                                    fontSize: 14.sp,
-                                                                    gravity: ToastGravity.BOTTOM,
-                                                                    textColor: Colors.black,);
-                                                                },
-                                                              ),
-                                                            ),
-                                                            Expanded(child:
-                                                            Container(
-                                                                alignment: Alignment.center,
-                                                                width: 15.w,
-                                                                height: 15.w,
-                                                                child:InkWell(
-                                                                  onTap: (){
-
-                                                                  },
-                                                                  child: Image.asset('images/heart.png') ,
-                                                                )
-                                                            ),
-                                                            )
-                                                          ],
-                                                        );
-                                                      }),
-                                                )
-                                            )
-                                        )
-                                      ],
-                                    ),
-                                  )
-                          );
-                        }
-                    );
-                  },
-                  child: InkWell(
-                    highlightColor: Colors.transparent,
-                    radius: 0,
-                    child:Container(
-                      width: 100.w,
-                      child:  Text("点击查看评论",style: TextStyle(
-                          color: Colors.grey,fontSize:12.sp,
-                          fontWeight: FontWeight.bold ),),
-                    )
+                  ,//头像信息处
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 17.5.h, 0, 0),
+                    child: Text("今天看了好多风景，特别好看呀！！！！"),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0,17.5.h, 0, 0),
+                    height: 70.h,
+                    child: Wrap(
+                      alignment: WrapAlignment.spaceAround,
+                      children: <Widget>[
+                        imageCon("images/scr1.jpg"),
+                        imageCon("images/scr2.jpg"),
+                        imageCon("images/scr3.jpg")
+                      ],
+                    ),
                   )
-                ),
-              ),
-              /*Container(
+                  ,//图片处
+
+                  Container(
+                    margin: EdgeInsets.fromLTRB(35.w, 7.h, 0, 0),
+                    height: 70.h,
+                    width: 297.5.w,
+                    child: Row(
+                      children: <Widget>[
+                        homeClickButton("images/fenxiang.png",emptyFun),
+                        homeClickButton("images/pinglun.png",comment),
+                        homeClickButton(likeImg,beLike),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(50.w, 0, 0, 0),
+                    alignment: Alignment.centerLeft,
+                    child: InkWell(
+                        onTap: (){
+                          showModalBottomSheet(context: context,
+                              builder: (ctx){
+                                return StatefulBuilder(
+                                    builder: (context,ctx2)=>
+                                        Container(
+                                          color: Colors.white,
+                                          child:Stack(
+                                            children: [
+                                              Positioned(
+                                                  child: Container(
+                                                      margin: EdgeInsets.fromLTRB(20.w, 20.h, 20.w,20.h),
+                                                      child: ScrollConfiguration(
+                                                        behavior: CusBehavior(),
+                                                        child: ListView.builder(
+                                                            itemCount: 10,
+                                                            itemBuilder:(BuildContext context,int index){
+                                                              return Row(
+                                                                children: [
+                                                                  Container(
+                                                                    alignment: Alignment.center,
+                                                                    width: 290.w,
+                                                                    height: 40.h,
+                                                                    child: ListTile(
+                                                                      leading: Icon(Icons.perm_contact_cal_outlined),
+                                                                      title: Text("天气不错啊"),
+                                                                      subtitle: Text("我是zz"),
+                                                                      onTap: (){
+                                                                        comment();
+                                                                      },
+                                                                      onLongPress: (){
+                                                                        ClipboardData data = new ClipboardData(text:"这是你复制的内容");
+                                                                        Clipboard.setData(data);
+                                                                        Fluttertoast.showToast(
+                                                                          timeInSecForIosWeb: 1,
+                                                                          msg: "已复制该内容",
+                                                                          fontSize: 14.sp,
+                                                                          gravity: ToastGravity.BOTTOM,
+                                                                          textColor: Colors.black,);
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(child:
+                                                                  Container(
+                                                                      alignment: Alignment.center,
+                                                                      width: 15.w,
+                                                                      height: 15.w,
+                                                                      child:InkWell(
+                                                                        onTap: (){
+
+                                                                        },
+                                                                        child: Image.asset('images/heart.png') ,
+                                                                      )
+                                                                  ),
+                                                                  )
+                                                                ],
+                                                              );
+                                                            }),
+                                                      )
+                                                  )
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                );
+                              }
+                          );
+                        },
+                        child: InkWell(
+                            highlightColor: Colors.transparent,
+                            radius: 0,
+                            child:Container(
+                              width: 100.w,
+                              height: 30.h,
+                              child:  Text("点击查看评论",style: TextStyle(
+                                  color: Colors.grey,fontSize:12.sp,
+                                  fontWeight: FontWeight.bold ),),
+                            )
+                        )
+                    ),
+                  ),
+                  /*Container(
                 width: 315.w,
                 height: 35.h,
                 alignment: Alignment.bottomRight,
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: homeClickButton("images/zhankai.png",goExpansion),
               ),*/
-              Container(
-                height: 20.h,
-              ),
-            ],
+                  Container(
+                    height: 20.h,
+                  ),
+                ],
 
-          )
-      ),
+              )
+          ),
+        )
+      )
     );
   }
 }//主页活动卡片
 
-goExpansion(){
+/*goExpansion(){
   MyApp.navigator.currentState.push(
       MaterialPageRoute(builder: (context)=>actExpansion()));
-}
+}*/
 
 
 emptyFun(){

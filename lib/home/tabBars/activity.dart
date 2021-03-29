@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/home/tabBars/actExpand/actExpansion.dart';
 import 'package:flutter_cumtchat/module/button.dart';
 import 'package:flutter_cumtchat/module/cardCon.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
+import 'package:flutter_cumtchat/module/function.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class activity extends StatefulWidget
@@ -17,7 +19,7 @@ class _activity extends State<activity>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("#F2F2F4"),
+      backgroundColor: backgroundColor,
         body:ScrollConfiguration(
           behavior: CusBehavior1(),
           child: CustomScrollView(
@@ -87,12 +89,10 @@ class _activity extends State<activity>
                                       child:ListView.builder(
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
-                                        itemCount: 20,
+                                        itemCount: 1,
                                         itemBuilder: (context,index){
                                           return
-                                            actCard(
-
-                                            );
+                                            actCard();
                                         },
                                       ),
                                     )

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
+import 'package:flutter_cumtchat/module/function.dart';
 import 'package:flutter_cumtchat/module/stateCard.dart';
+import 'package:flutter_cumtchat/user/ListView/alterUserInfo.dart';
 import 'dart:ui';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_cumtchat/module/cardCon.dart';
@@ -63,7 +65,7 @@ class _info extends State<info_page>{
                                ),
                                Container(
                                    margin: EdgeInsets.fromLTRB(10.w, 40.h, 0, 0),
-                                   width: 240.w,
+                                   width: 220.w,
                                    child: Column(
                                      children: [
                                        stateCard(11, 22, 153),
@@ -71,13 +73,15 @@ class _info extends State<info_page>{
                                          highlightColor: Colors.transparent, // 透明色
                                          splashColor: Colors.transparent,
                                          onTap: (){
-
+                                            Navigator.push(context,
+                                                CupertinoPageRoute(builder: (context)=>alterPage()
+                                            ));
                                          },
                                          child: Container(
                                            margin: EdgeInsets.fromLTRB(0, 5.h, 0, 0),
                                            padding: EdgeInsets.all(5.w),
                                            alignment: Alignment.center,
-                                           width: 235.w,
+                                           width: 210.w,
                                            decoration: BoxDecoration(
                                                borderRadius: BorderRadius.circular(5.w),
                                                border: Border.all(
@@ -137,95 +141,6 @@ class _info extends State<info_page>{
                   ],
                 ),
               )
-              /*Container(
-                height: 100.h,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('images/screen.jpg'
-                      ,),
-                    fit: BoxFit.cover
-                  )
-                ),
-                child:Container(
-                  child: ,
-                )
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    /*Container(
-                      height: 30.h,
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.fromLTRB(0, 200.h, 0, 0),
-                      decoration: BoxDecoration(
-                        color: HexColor("#B3DDEC"),
-                        borderRadius: BorderRadius.circular(10.w),
-                      ),
-                      width: 280.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children:<Widget> [
-                          InkWell(
-                            onTap: (){
-
-                            },
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(15.w, 0, 0, 0),
-                              child: Text("获赞 2"),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: 40.h,
-                            child: VerticalDivider(
-                              thickness: 0.6.w,
-                              width: 1.w,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: (){
-
-                            },
-                            child: Container(
-                              child: Text("粉丝 2"),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: 40.h,
-                            child: VerticalDivider(
-                              thickness: 0.6.w,
-                              width: 1.w,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: (){
-
-                            },
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 15.w, 0),
-                              child: Text("关注 2"),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),*/
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 0.h, 0, 0),
-                      width: 70.w,
-                      height: 70.w,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('images/touxiang.jpg'),
-                              fit: BoxFit.cover
-                          ),
-                          color: Colors.black,
-                          border: Border.all(width: 2.w,color: Colors.white),
-                          borderRadius: BorderRadius.circular(40.w)
-                      ),
-                    ),
-                  ],
-                ),
-              )*/
             ),
             title: Container(
               child: Text("王逸鸣的主页",style: TextStyle(color: Colors.black),),
@@ -235,94 +150,11 @@ class _info extends State<info_page>{
             snap: true,
             pinned: true,
           ),
-         /* SliverToBoxAdapter(
-            child: Container(
-              alignment: Alignment.center,
-              width: 350.w,
-              height: 180.h,
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                        margin: EdgeInsets.fromLTRB(0, 100.h, 0, 0),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.w),
-                          border: Border.all(width: 4.w,color: Colors.white),
-                        ),
-                        width: 280.w,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children:<Widget> [
-                            InkWell(
-                              onTap: (){
-
-                              },
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(15.w, 0, 0, 0),
-                                child: Text("获赞 2"),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              height: 40.h,
-                              child: VerticalDivider(
-                                thickness: 0.6.w,
-                                width: 1.w,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: (){
-
-                              },
-                              child: Container(
-                                child: Text("粉丝 2"),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              height: 40.h,
-                              child: VerticalDivider(
-                                thickness: 0.6.w,
-                                width: 1.w,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: (){
-
-                              },
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(0, 0, 15.w, 0),
-                                child: Text("关注 2"),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    Container(
-                      width: 70.w,
-                      height: 70.h,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/touxiang.jpg'),
-                          fit: BoxFit.cover
-                        ),
-                          color: Colors.black,
-                          border: Border.all(width: 4.w,color: Colors.white),
-                          borderRadius: BorderRadius.circular(40.w)
-                      ),
-                  ),
-                ],
-              ),
-            )
-          ),*/
           SliverList(
               delegate: SliverChildListDelegate(
             [
               Container(
                   width: 350.w,
-                  /*constraints: BoxConstraints(maxWidth: scrWidth*0.9),//限制宽长高*/
                   child:
                   Container(
                       padding: EdgeInsets.all(10.w),
@@ -331,12 +163,10 @@ class _info extends State<info_page>{
                         child:ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: 20,
+                          itemCount: 1,
                           itemBuilder: (context,index){
                             return
-                              actCard(
-
-                              );
+                              actCard();
                           },
                         ),
                       )

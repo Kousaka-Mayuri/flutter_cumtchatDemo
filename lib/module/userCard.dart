@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/conShadow.dart';
@@ -64,6 +65,7 @@ class _user extends State<userCard>{
               child: Row(
                 children: [
                   Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 10.w, 0),
                     alignment: Alignment.center,
                     width: 70.w,
                     height: 70.w,
@@ -80,7 +82,6 @@ class _user extends State<userCard>{
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
-                          margin: EdgeInsets.fromLTRB(15.w, 0, 0, 0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -109,7 +110,6 @@ class _user extends State<userCard>{
                           ),),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(16.w, 0, 0, 0),
                           child: Text("经验100/2000",style: TextStyle(fontSize: 10.sp,
                               color: HexColor("#A8A8A8")),),
                         )

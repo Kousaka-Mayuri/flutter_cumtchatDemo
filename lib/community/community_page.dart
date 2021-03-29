@@ -19,9 +19,9 @@ class communityPage extends State<community_page>{
             return communityExPandCard("Bangdream");
           },
           //打开新的页面用时
-          transitionDuration: Duration(milliseconds: 800),
+          transitionDuration: Duration(milliseconds: 400),
           //关半页岩用时
-          reverseTransitionDuration: Duration(milliseconds: 800),
+          reverseTransitionDuration: Duration(milliseconds: 400),
           //过渡动画构建
           transitionsBuilder: (
               BuildContext context,
@@ -113,16 +113,6 @@ class communityPage extends State<community_page>{
                         width: 350.w,
                         child: Wrap(
                           children: <Widget>[
-                            /*communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
-                            communityIcon('images/yuanshen.jpg', click1, " 原神"),
-                            communityIcon('images/yuanshen.jpg', click1, " 原神"),
-                            communityIcon('images/yuanshen.jpg', click1, " 原神"),
-                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
-                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
-                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
-                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),
-                            communityIcon('images/bangdream.jpg',click1 , "Bangdream"),*/
-
                           ],
                         ),
                       ),

@@ -16,7 +16,7 @@ class question_card extends State<questionCard>{
       width: 300.w,
 
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.w),
+        borderRadius: BorderRadius.circular(10.w),
         color: tabBar
       ),
       child: Container(

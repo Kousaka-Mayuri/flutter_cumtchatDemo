@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/community/module/communityIcon.dart';
+import 'package:flutter_cumtchat/home/tabBars/module/talkModule.dart';
+import 'package:flutter_cumtchat/home/tabBars/talk.dart';
 import 'package:flutter_cumtchat/module/cardCon.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
+import 'package:flutter_cumtchat/module/function.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_cumtchat/community/module/communityIcon.dart';
@@ -13,14 +16,46 @@ class communityExPandCard extends StatefulWidget{
   community_page createState() => community_page();
 }
 class community_page extends State<communityExPandCard>{
+  click(){
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          //目标页面
+          return talkExpand();
+        },
+        //打开新的页面用时
+        transitionDuration: Duration(milliseconds: 500),
+        //关半页岩用时
+        reverseTransitionDuration: Duration(milliseconds: 500),
+        //过渡动画构建
+        transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+            ) {
+          //渐变过渡动画
+          return FadeTransition(
+            // 透明度从 0.0-1.0
+            opacity: Tween(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                parent: animation,
+                //动画曲线规则，这里使用的是先快后慢
+                curve: Curves.fastOutSlowIn,
+              ),
+            ),
+            child: child,
+          );
+        },
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-         body:Hero(
-           tag: widget.text,
-           child: Material(
-             child: CustomScrollView(
+         body:CustomScrollView(
                slivers: [
                  SliverAppBar(
                    expandedHeight: 200.h,
@@ -61,17 +96,20 @@ class community_page extends State<communityExPandCard>{
                          child: Column(
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
-                             communityExpandIcon('images/bangdream.jpg',"Bangdream"),
+                             Container(
+                               width: 350.w,
+                               child: communityExpandIcon('images/bangdream.jpg',"Bangdream"),
+                             ),
                              Container(
                                margin: EdgeInsets.fromLTRB(15.w, 5.h, 15.w, 0),
-                               child: Row(
-                                 mainAxisAlignment: MainAxisAlignment.center,
+                               child: Wrap(
+                                 alignment: WrapAlignment.spaceAround,
                                  children: [
                                    Container(
                                      child: Text("总获赞数：10.4w",style: attentionText,),
                                    ),
                                    Container(
-                                     margin: EdgeInsets.fromLTRB(30.w, 0, 0, 0),
+                                     margin: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
                                      child: Text("总评论数：4.4w",style: attentionText,),
                                    )
                                  ],
@@ -96,20 +134,15 @@ class community_page extends State<communityExPandCard>{
                            ),
                            width: 350.w,
                            /*constraints: BoxConstraints(maxWidth: scrWidth*0.9),//限制宽长高*/
-                           child:
-                           Container(
-                               padding: EdgeInsets.all(10.w),
+                           child: Container(
                                child: ScrollConfiguration(
                                  behavior: CusBehavior(),
                                  child:ListView.builder(
                                    shrinkWrap: true,
                                    physics: NeverScrollableScrollPhysics(),
-                                   itemCount: 20,
+                                   itemCount: 1,
                                    itemBuilder: (context,index){
-                                     return
-                                       actCard(
-
-                                       );
+                                     return talkCard(click);
                                    },
                                  ),
                                )
@@ -120,8 +153,7 @@ class community_page extends State<communityExPandCard>{
                  ))
                ],
              ),
-           )
-         )
+
     );
   }
 }

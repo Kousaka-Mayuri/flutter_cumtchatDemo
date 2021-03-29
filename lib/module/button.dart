@@ -28,30 +28,32 @@ class clickButton extends StatelessWidget{
   }
 }//登陆页面按钮
 
-class homeIconButton extends StatelessWidget{
+class textButton extends StatelessWidget{
   final String src;
   final String name;
-  const homeIconButton(this.src,{
+  final Function() click;
+  const textButton(this.src,{
     Key key,
-    this.name
+    this.name,
+    this.click
   }):super(key:key);
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80,
-      height: 80,
+      width: 70.w,
+      height: 70.w,
       child:Column(
         children: <Widget>[
           IconButton(
-            icon: Image.asset(src),
+            icon: Image.asset(src,fit: BoxFit.cover,),
             onPressed: (){
-
+                click();
             },
           ),
-          Text(name,style: actText)
+          Text(name,style: userPageText)
         ],
       ),
-      margin: EdgeInsets.fromLTRB(20, 20, 20, 5),
+      margin: EdgeInsets.fromLTRB(5.w, 10.h, 5.w, 0),
     );
   }
 }//主页活动输入框下的按钮

@@ -19,3 +19,4 @@ Color tabBar = HexColor("#ffffff");//纯白色
 Color black = HexColor("#000000");//纯黑色
 Color lightGrey = HexColor("#A3A3A3");//亮灰色
 Color attentionColor = HexColor('#0F9C57');//关注原谅色
+Color backgroundColor = HexColor("#F2F1F6");
