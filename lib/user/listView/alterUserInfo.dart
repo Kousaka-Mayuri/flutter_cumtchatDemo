@@ -1,15 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
+
 class alterPage extends StatefulWidget{
   @override
   alter_page createState() => alter_page();
 }
 
 class alter_page extends State<alterPage>{
+  DateTime selectedData = new DateTime.now();
+  String description;
+  String name;
   var _imagePath;
   Widget _imageView(imagePath){
     if(imagePath == null){
@@ -47,6 +54,105 @@ class alter_page extends State<alterPage>{
   }
   @override
   Widget build(BuildContext context) {
+    void alertName(){
+      showDialog(
+        context: context,
+        builder: (context){
+          return AlertDialog(
+              title: Text("修改姓名"),
+              content: TextField(
+                onChanged: (String value){
+                  setState(() {
+                        name = value;
+                  });
+                },
+              ),
+            actions:<Widget> [
+              FlatButton(onPressed: (){Navigator.of(context).pop();}, child: Text("再想想")),
+              FlatButton(onPressed: (){
+                setState(() {
+                  user.name = name;
+                });
+                Navigator.of(context).pop();
+              }, child: Text("我确认"))
+            ],
+          );
+        }
+      );
+    }
+    void alertSex(){
+      showDialog(
+          context: context,
+      builder: (context){
+            return AlertDialog(
+              title: Container(
+                alignment: Alignment.center,
+                child: Text("修改性别"),
+              ),
+              actions: [
+                Container(
+
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FlatButton(onPressed: (){
+                        setState(() {
+                          user.sex = "男";
+                        });
+                        Navigator.of(context).pop();}, child: Text("男")),
+                      FlatButton(onPressed: (){
+                        setState(() {
+                          user.sex = "女";
+                        });
+                        Navigator.of(context).pop();
+                      }, child: Text("女"))
+                    ],
+                  ),
+                )
+              ],
+            );
+      }
+      );
+    }
+    void alertDescription(){
+      showDialog(context: context,
+      builder: (context){
+        return AlertDialog(
+          title: Container(
+            alignment: Alignment.center,
+            child: Text("修改个性签名"),
+          ),
+          content: TextField(
+            onChanged: (String value){
+              setState(() {
+                description = value;
+              });
+            },
+          ),
+          actions: [
+            FlatButton(onPressed: (){
+              Navigator.of(context).pop();}, child: Text("再想想")),
+            FlatButton(onPressed: (){
+              setState(() {
+                user.description = description;
+              });
+              Navigator.of(context).pop();
+            }, child: Text("我确认"))
+          ],
+        );
+      });
+    }
+    void selectBirthdayData()async{
+      final DateTime data = await showDatePicker(
+          context: context, initialDate: selectedData,
+          firstDate: DateTime(1970,1,1),
+          lastDate:DateTime(2030,12,31));
+      if(data == null) return;
+      setState(() {
+        user.birthdayDate = data;
+      });
+    }
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(55.h),
@@ -106,7 +212,7 @@ class alter_page extends State<alterPage>{
                 listDivider(),
                 InkWell(
                   onTap: (){
-
+                    alertName();
                   },
                   child: Container(
 
@@ -127,7 +233,7 @@ class alter_page extends State<alterPage>{
                               children: [Container(
                                 alignment: Alignment.centerRight,
                                 width: 200.w,
-                                child: Text("我是彩笔",maxLines: 1,style: userDataText,),
+                                child: Text(user.name,maxLines: 1,style: userDataText,),
                               ),
                                 rightArrows(),],
                             ))
@@ -138,10 +244,9 @@ class alter_page extends State<alterPage>{
                 listDivider(),
                 InkWell(
                   onTap: (){
-
+                      alertSex();
                   },
                   child: Container(
-
                     alignment: Alignment.center,
                     width: 350.w,
                     height: 40.h,
@@ -159,7 +264,7 @@ class alter_page extends State<alterPage>{
                               children: [Container(
                                 alignment: Alignment.centerRight,
                                 width: 200.w,
-                                child: Text("男",maxLines: 1,style: userDataText,),
+                                child: Text(user.sex,maxLines: 1,style: userDataText,),
                               ),
                                 rightArrows(),],
                             ))
@@ -170,7 +275,7 @@ class alter_page extends State<alterPage>{
                 listDivider(),
                 InkWell(
                   onTap: (){
-
+                    selectBirthdayData();
                   },
                   child: Container(
 
@@ -191,7 +296,7 @@ class alter_page extends State<alterPage>{
                               children: [Container(
                                 alignment: Alignment.centerRight,
                                 width: 200.w,
-                                child: Text("2001-01-11",maxLines: 1,style: userDataText,),
+                                child: Text(user.birthdayDate.toString().substring(0,10),maxLines: 1,style: userDataText,),
                               ),
                                 rightArrows(),],
                             ))
@@ -202,7 +307,7 @@ class alter_page extends State<alterPage>{
                 listDivider(),
                 InkWell(
                   onTap: (){
-
+                    alertDescription();
                   },
                   child: Container(
 
@@ -223,7 +328,7 @@ class alter_page extends State<alterPage>{
                                   children: [Container(
                                     alignment: Alignment.centerRight,
                                     width: 200.w,
-                                    child: Text("我是个zz，干啥啥不行，打啥啥不会，干饭第一名，小废物就是我",maxLines: 1,overflow: TextOverflow.ellipsis,style: userDataText,),
+                                    child: Text(user.description,maxLines: 1,overflow: TextOverflow.ellipsis,style: userDataText,),
                                   ),
                               rightArrows(),],
                         ))

@@ -55,17 +55,6 @@ with SingleTickerProviderStateMixin{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  /*Container(
-                      key: searchIcon,
-                      margin: EdgeInsets.fromLTRB(17.5.w, 0, 0, 0),
-                      child: Icon(Icons.search,color: Colors.black,)),*/
-                  /*Container(
-                    alignment: Alignment.center,
-                    width: 175.w,
-                    key: FlyingText,
-                    margin: EdgeInsets.fromLTRB(42.w,0, 0, 0),
-                    child: Image.asset('images/FlyingText.png',fit: BoxFit.cover,),
-                  )*/
                   Container(
                     alignment: Alignment.center,
                     child: TabBar(

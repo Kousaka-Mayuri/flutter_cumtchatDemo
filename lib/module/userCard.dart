@@ -119,7 +119,7 @@ class _user extends State<userCard>{
                   Expanded(
                       child:InkWell(
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder:
+                          Navigator.of(context).push(CupertinoPageRoute(builder:
                               (context)=>info_page()));
                         },
                         child: Container(
@@ -149,7 +149,7 @@ class _user extends State<userCard>{
               margin: EdgeInsets.fromLTRB(0, 20.h, 0, 0),
               height: 60.h,
               width: 300.w,
-              child: stateCard(11,23,153)
+              child: stateCard("110000","23","153")
             )
           ],
         )

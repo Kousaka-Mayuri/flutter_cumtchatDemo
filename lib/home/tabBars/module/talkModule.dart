@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/community/community_expandPage.dart';
 import 'package:flutter_cumtchat/module/button.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/commentCard.dart';
@@ -207,38 +208,44 @@ class talk_expand extends State<talkExpand>
                 behavior: CusBehavior(),
                 child: Column(
                   children:<Widget> [
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 0, 0, 10.h),
-                      decoration: BoxDecoration(
-                          color: tabBar
-                      ),
-                      width: 350.w,
-                      height: 60.h,
-                      child: Row(
-                        children:<Widget> [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(20.h, 0, 10.h, 0),
-                            alignment: Alignment.center,
-                            width: 40.h,
-                            height: 40.h,
-                            child: Image.asset('images/bangdream.jpg'),
-                          ),
-                          Container(
-                            child: Text("Bangdream",style: TextStyle(fontSize: 16.sp),),
-                          ),
-                          Expanded(
-                              child: Container(
-                                width: 40.h,
-                                alignment: Alignment.centerRight,
-                                child: IconButton(
-                                  onPressed: (){
-
-                                  },
-                                  color: Colors.grey,
-                                  icon: Icon(Icons.arrow_forward_ios),
-                                ),
-                              ))
-                        ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(builder: (context)=>
+                        communityExPandCard()
+                        ));
+                      },
+                      child:Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 10.h),
+                        decoration: BoxDecoration(
+                            color: tabBar
+                        ),
+                        width: 350.w,
+                        height: 60.h,
+                        child: Row(
+                          children:<Widget> [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(20.h, 0, 10.h, 0),
+                              alignment: Alignment.center,
+                              width: 40.h,
+                              height: 40.h,
+                              child: Image.asset('images/bangdream.jpg'),
+                            ),
+                            Container(
+                              child: Text("Bangdream",style: TextStyle(fontSize: 16.sp),),
+                            ),
+                            Expanded(
+                                child: Container(
+                                  width: 40.h,
+                                  alignment: Alignment.centerRight,
+                                  child: IconButton(
+                                    color: Colors.grey,
+                                    icon: Icon(Icons.arrow_forward_ios),
+                                  ),
+                                ))
+                          ],
+                        ),
                       ),
                     ),
                     Container(

@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/login/login_page.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/userCard.dart';
 import 'package:flutter_cumtchat/user/ListView/settings_page.dart';
+import 'package:flutter_cumtchat/user/collect/collectPage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_cumtchat/module/button.dart';
@@ -82,15 +84,27 @@ class _user_page extends State<user_page>
                   name: "发布",),
                   textButton("images/userPage/sign.png",
                   name: "签到",),
-                  textButton("images/userPage/collect.png",
-                  name: "收藏",),
-                  Hero(
-                    tag: 'settings',
-                    child: Material(
-                      color: Colors.white,
-                      child: textButton("images/userPage/setting.png",
-                        name: "设置",
-                        click: goSetting,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context,
+                          CupertinoPageRoute(builder: (context)=>collect()));
+                    },
+                    child: textButton("images/userPage/collect.png",
+                      name: "收藏",),
+                  ),
+
+                  GestureDetector(
+                    onTap: (){
+                      goSetting();
+                    },
+                    child:Hero(
+                      tag: 'settings',
+                      child: Material(
+                        color: Colors.white,
+                        child: textButton("images/userPage/setting.png",
+                          name: "设置",
+                        ),
+                      ),
                     ),
                   ),
                   textButton('images/userPage/invite.png',

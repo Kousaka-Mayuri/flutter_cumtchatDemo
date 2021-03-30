@@ -31,11 +31,9 @@ class clickButton extends StatelessWidget{
 class textButton extends StatelessWidget{
   final String src;
   final String name;
-  final Function() click;
   const textButton(this.src,{
     Key key,
     this.name,
-    this.click
   }):super(key:key);
   @override
   Widget build(BuildContext context) {
@@ -46,9 +44,6 @@ class textButton extends StatelessWidget{
         children: <Widget>[
           IconButton(
             icon: Image.asset(src,fit: BoxFit.cover,),
-            onPressed: (){
-                click();
-            },
           ),
           Text(name,style: userPageText)
         ],

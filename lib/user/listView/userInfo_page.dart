@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/function.dart';
 import 'package:flutter_cumtchat/module/stateCard.dart';
@@ -15,6 +16,16 @@ class info_page extends StatefulWidget{
 class _info extends State<info_page>{
   @override
   Widget build(BuildContext context) {
+    showDetail(){
+      showDialog(
+          context: context,
+          builder: (context){
+            return AlertDialog(
+              title: Text("个性签名"),
+              content: Text(user.description),
+            );
+          });
+    }
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -68,7 +79,7 @@ class _info extends State<info_page>{
                                    width: 220.w,
                                    child: Column(
                                      children: [
-                                       stateCard(11, 22, 153),
+                                       stateCard("11", "22", "153"),
                                        InkWell(
                                          highlightColor: Colors.transparent, // 透明色
                                          splashColor: Colors.transparent,
@@ -107,11 +118,12 @@ class _info extends State<info_page>{
                          Container(
                            width: 350.w,
                            child: Row(
+                             mainAxisAlignment: MainAxisAlignment.end,
                              children: [
                                Container(
                                  width: 280.w,
                                  child: Text(
-                                   "我是一个大彩笔，做啥啥不行，玩啥啥不会，睡觉还是第一名，请叫我大废物，嘿嘿嘿嘿嘿"
+                                   user.description
                                    ,maxLines: 1,
                                    overflow: TextOverflow.ellipsis,
                                  ),
@@ -124,7 +136,7 @@ class _info extends State<info_page>{
                                        highlightColor: Colors.transparent, // 透明色
                                        splashColor: Colors.transparent,
                                        onTap: (){
-                                          
+                                          showDetail();
                                        },
                                        child: Text("详情",style: TextStyle(
                                            color: HexColor("#2481C2")

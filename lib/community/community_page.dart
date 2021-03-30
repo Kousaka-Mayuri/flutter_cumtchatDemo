@@ -16,7 +16,7 @@ class communityPage extends State<community_page>{
           pageBuilder: (BuildContext context, Animation<double> animation,
               Animation<double> secondaryAnimation) {
             //目标页面
-            return communityExPandCard("Bangdream");
+            return communityExPandCard();
           },
           //打开新的页面用时
           transitionDuration: Duration(milliseconds: 400),

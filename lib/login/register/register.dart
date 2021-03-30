@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cumtchat/data/userData.dart';
+import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/button.dart';
 import 'package:flutter_cumtchat/module/textField.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

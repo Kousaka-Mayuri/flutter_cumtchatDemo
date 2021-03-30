@@ -10,9 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_cumtchat/community/module/communityIcon.dart';
 
 class communityExPandCard extends StatefulWidget{
-  final String text;
+
   @override
-  const communityExPandCard(this.text,{Key key});
+  const communityExPandCard({Key key});
   community_page createState() => community_page();
 }
 class community_page extends State<communityExPandCard>{
