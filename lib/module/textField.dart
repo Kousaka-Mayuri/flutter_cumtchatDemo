@@ -45,6 +45,12 @@ class login_textfield extends State<loginTextField>{
       ),
     ));
   }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+  }
 }//登录页面输入框
 
 class searchTextField extends StatelessWidget{

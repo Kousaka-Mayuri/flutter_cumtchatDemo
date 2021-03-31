@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/community/module/communityIcon.dart';
+import 'package:flutter_cumtchat/community/releasePage.dart';
 import 'package:flutter_cumtchat/home/tabBars/module/talkModule.dart';
 import 'package:flutter_cumtchat/home/tabBars/talk.dart';
 import 'package:flutter_cumtchat/module/cardCon.dart';
@@ -10,9 +12,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_cumtchat/community/module/communityIcon.dart';
 
 class communityExPandCard extends StatefulWidget{
-
+  final String community;
   @override
-  const communityExPandCard({Key key});
+  const communityExPandCard({this.community,Key key});
   community_page createState() => community_page();
 }
 class community_page extends State<communityExPandCard>{
@@ -55,6 +57,16 @@ class community_page extends State<communityExPandCard>{
   Widget build(BuildContext context) {
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.add,
+          ),
+          backgroundColor: HexColor("#109D58"),
+          onPressed: (){
+              Navigator.push(
+                  context, CupertinoPageRoute(builder: (context)=>release(community: widget.community,)
+              ));
+          }),
          body:CustomScrollView(
                slivers: [
                  SliverAppBar(
@@ -63,7 +75,7 @@ class community_page extends State<communityExPandCard>{
                      child: Row(
                        children: [
                          Container(
-                           child: Text("Bangdream"),
+                           child: Text(widget.community),
                          ),
                          Expanded(
                              child: Container(
@@ -98,7 +110,7 @@ class community_page extends State<communityExPandCard>{
                            children: [
                              Container(
                                width: 350.w,
-                               child: communityExpandIcon('images/bangdream.jpg',"Bangdream"),
+                               child: communityExpandIcon('images/bangdream.jpg',widget.community),
                              ),
                              Container(
                                margin: EdgeInsets.fromLTRB(15.w, 5.h, 15.w, 0),
@@ -133,8 +145,6 @@ class community_page extends State<communityExPandCard>{
                                )
                            ),
                            width: 350.w,
-                           /*constraints: BoxConstraints(maxWidth: scrWidth*0.9),//限制宽长高*/
-                           child: Container(
                                child: ScrollConfiguration(
                                  behavior: CusBehavior(),
                                  child:ListView.builder(
@@ -146,9 +156,7 @@ class community_page extends State<communityExPandCard>{
                                    },
                                  ),
                                )
-
-                           )
-                       )
+                       ),
                      ]
                  ))
                ],

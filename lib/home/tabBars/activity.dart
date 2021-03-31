@@ -49,8 +49,7 @@ class _activity extends State<activity>
                                   ),
                                 ),
                               ),
-                              Container(
-                                
+                              /*Container(
                                 alignment: Alignment.center,
                                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                 color: tabBar,
@@ -69,7 +68,7 @@ class _activity extends State<activity>
                                           70.h,78.75.w,"成就"),
                                     ],
                                   )
-                              ),
+                              ),*/
                             ],
                           ),
                         )

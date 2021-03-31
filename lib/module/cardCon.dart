@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_cumtchat/home/tabBars/actExpand/actExpansion.dart';
-import 'package:flutter_cumtchat/main.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cumtchat/module/button.dart';
@@ -8,6 +8,7 @@ import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/imageCon.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:like_button/like_button.dart';
 List<String> pic =[
   'images/scr1.jpg','images/scr3.jpg','images/scr3.jpg'
 ];
@@ -64,7 +65,10 @@ class _act extends State<actCard>{
                                     child: Container(
                                       padding: EdgeInsets.all(8.w),
                                       height: txHeight,
-                                      color: loginTFColor,
+                                      decoration: BoxDecoration(
+                                          color: loginTFColor,
+                                          borderRadius: BorderRadius.circular(10.w)
+                                      ),
                                       child: TextField(
                                         // scrollPadding: EdgeInsets.zero,
                                         autofocus: true,
@@ -82,23 +86,28 @@ class _act extends State<actCard>{
                             ),
                             Row(
                               children:<Widget> [
-                                Container(
+                                /*Container(
                                   height: txBottom,
                                   child: Image.asset(
                                     "images/pic.png",
                                     height: 30.h,
                                     width: 30.h,
                                   ),
-                                ),
+                                ),*/
                                 Expanded(
-                                  child: Container(
-                                  alignment: Alignment.bottomRight,
-                                  padding: EdgeInsets.only(left: 12.w, right: 12.w),
-                                  child: Text("发送",
-                                      style: TextStyle(
-                                          fontSize: 15.sp,
-                                          color: Colors.orange)),
-                                ),)
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      Navigator.of(context).pop();
+                                    },
+                                    child:Container(
+                                      alignment: Alignment.bottomRight,
+                                      margin: EdgeInsets.fromLTRB(0, 10.h, 0, 0),
+                                      child: Text("发送",
+                                          style: TextStyle(
+                                              fontSize: 15.sp,
+                                              color: Colors.orange)),
+                                    ),)
+                                  )
                               ],
                             )
                           ],
@@ -222,12 +231,12 @@ class _act extends State<actCard>{
                   Container(
                     margin: EdgeInsets.fromLTRB(35.w, 7.h, 0, 0),
                     height: 70.h,
-                    width: 297.5.w,
+                    width: 300.w,
                     child: Row(
                       children: <Widget>[
-                        homeClickButton("images/fenxiang.png",emptyFun),
+                        homeClickButton("images/fenxiang.png",share),
                         homeClickButton("images/pinglun.png",comment),
-                        homeClickButton(likeImg,beLike),
+                        Expanded(child: like(100))
                       ],
                     ),
                   ),
@@ -256,39 +265,55 @@ class _act extends State<actCard>{
                                                                 children: [
                                                                   Container(
                                                                     alignment: Alignment.center,
-                                                                    width: 290.w,
-                                                                    height: 40.h,
-                                                                    child: ListTile(
-                                                                      leading: Icon(Icons.perm_contact_cal_outlined),
-                                                                      title: Text("天气不错啊"),
-                                                                      subtitle: Text("我是zz"),
+                                                                    width: 260.w,
+
+                                                                    child: GestureDetector(
                                                                       onTap: (){
                                                                         comment();
                                                                       },
-                                                                      onLongPress: (){
-                                                                        ClipboardData data = new ClipboardData(text:"这是你复制的内容");
-                                                                        Clipboard.setData(data);
-                                                                        Fluttertoast.showToast(
-                                                                          timeInSecForIosWeb: 1,
-                                                                          msg: "已复制该内容",
-                                                                          fontSize: 14.sp,
-                                                                          gravity: ToastGravity.BOTTOM,
-                                                                          textColor: Colors.black,);
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                  Expanded(child:
-                                                                  Container(
-                                                                      alignment: Alignment.center,
-                                                                      width: 15.w,
-                                                                      height: 15.w,
-                                                                      child:InkWell(
-                                                                        onTap: (){
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            alignment: Alignment.center,
+                                                                            width: 30.h,
+                                                                            height: 30.h,
+                                                                            decoration: BoxDecoration(
+                                                                              image: DecorationImage(
+                                                                                image: AssetImage('images/touxiang.jpg'),
+                                                                                fit: BoxFit.cover
+                                                                              )
+                                                                            ),
+                                                                          ),
+                                                                          Container(
+                                                                            width: 200.w,
+                                                                            margin: EdgeInsets.fromLTRB(10.w, 10.h, 0, 0),
+                                                                            child: Column(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                              children: [
+                                                                                Container(
 
-                                                                        },
-                                                                        child: Image.asset('images/heart.png') ,
-                                                                      )
+                                                                                  alignment: Alignment.centerLeft,
+                                                                                  child: Text("我是彩笔"),
+                                                                                ),
+                                                                                Container(
+                                                                                  alignment: Alignment.centerLeft,
+                                                                                  child: Text("今天天气不错",
+                                                                                  style: TextStyle(
+                                                                                    color: Colors.grey
+                                                                                  ),),
+                                                                                )
+                                                                              ],
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    )
                                                                   ),
+                                                                  Expanded(
+                                                                      child:Container(
+                                                                        margin: EdgeInsets.fromLTRB(0, 10.h, 0, 0),
+                                                                        child: like(20),
+                                                                      )
                                                                   )
                                                                 ],
                                                               );
@@ -316,13 +341,6 @@ class _act extends State<actCard>{
                         )
                     ),
                   ),
-                  /*Container(
-                width: 315.w,
-                height: 35.h,
-                alignment: Alignment.bottomRight,
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: homeClickButton("images/zhankai.png",goExpansion),
-              ),*/
                   Container(
                     height: 20.h,
                   ),
@@ -336,14 +354,14 @@ class _act extends State<actCard>{
   }
 }//主页活动卡片
 
-/*goExpansion(){
-  MyApp.navigator.currentState.push(
-      MaterialPageRoute(builder: (context)=>actExpansion()));
-}*/
-
-
 emptyFun(){
 
+}
+
+share(){
+  FlutterShareMe().shareToSystem(
+    msg: "分享内容还没写好呢"
+  );
 }
 
 class expandCard extends StatefulWidget{
@@ -428,13 +446,8 @@ class _expan extends State<expandCard>{
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children:<Widget> [
-                          Container(
-                            alignment: Alignment.center,
-                            child: Text("30人想去"),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.grade),
-                          ),
+                         
+                          like(100)
                         ],
                       )
                     )
@@ -487,4 +500,17 @@ class CusBehavior extends ScrollBehavior {
       BuildContext context, Widget child, AxisDirection axisDirection) {
     return super.buildViewportChrome(context, child, axisDirection);
   }
+}
+
+Widget like(number){
+  return LikeButton(
+    bubblesColor: BubblesColor(
+        dotPrimaryColor: Colors.white,
+        dotSecondaryColor: Colors.pink,
+        dotThirdColor: Colors.black,
+        dotLastColor: Colors.blueAccent
+    ),
+    size: 27.w,
+    likeCount: number,
+  );
 }

@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/data/user.dart';
-import 'package:flutter_cumtchat/home/home_page.dart';
-import 'package:flutter_cumtchat/home/tabBars/activity.dart';
 import 'package:flutter_cumtchat/main_page.dart';
 import 'package:flutter_cumtchat/module/button.dart';
 import 'package:flutter_cumtchat/module/textField.dart';
@@ -52,5 +50,11 @@ class enter_page extends State<enter>{
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
   }
 }

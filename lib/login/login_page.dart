@@ -122,12 +122,9 @@ class login_page extends State<login> with SingleTickerProviderStateMixin{
     )
     );
   }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 }
-
-/*TabBarView(
-
-                        controller: this._tabController,
-                        children: [
-                            enter(),
-                            register()
-                        ])*/

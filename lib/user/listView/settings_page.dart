@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_cumtchat/main.dart';
 class settings_page extends StatefulWidget{
   @override
   _settings createState() => _settings();
@@ -38,6 +39,9 @@ class _settings extends State<settings_page>{
                     height: 20.w,
                     child: Image.asset("images/userPage/logout.png",fit: BoxFit.cover,),
                   ),
+                  onTap: (){
+                    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => route == null);
+                  },
                   title: Text("退出登录",style: userPageText,),
                 )
               ],

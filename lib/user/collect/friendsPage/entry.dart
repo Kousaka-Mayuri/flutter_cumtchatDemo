@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cumtchat/data/otherUser.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/user/collect/otherUserPage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

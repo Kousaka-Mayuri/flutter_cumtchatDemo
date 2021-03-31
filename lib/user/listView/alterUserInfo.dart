@@ -5,8 +5,6 @@ import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:intl/intl.dart';
 
 class alterPage extends StatefulWidget{
   @override

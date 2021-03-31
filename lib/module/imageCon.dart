@@ -17,6 +17,8 @@ class imageCon extends StatelessWidget{
         Navigator.of(context).push(FadeRoute(page:PhotoViewSimpleScreen(
           imageProvider: AssetImage(src),
           heroTag: 'simple',
+          maxScale: 3.0,
+          minScale: 0.5,
         )));
       },
       child: Container(

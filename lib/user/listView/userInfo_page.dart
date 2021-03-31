@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
-import 'package:flutter_cumtchat/module/function.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter_cumtchat/module/stateCard.dart';
 import 'package:flutter_cumtchat/user/ListView/alterUserInfo.dart';
 import 'dart:ui';
@@ -15,6 +15,7 @@ class info_page extends StatefulWidget{
 
 class _info extends State<info_page>{
   @override
+  var _imagePath;
   Widget build(BuildContext context) {
     showDetail(){
       showDialog(
@@ -25,6 +26,38 @@ class _info extends State<info_page>{
               content: Text(user.description),
             );
           });
+    }
+    openGallery()async{
+      var image = await ImagePicker.pickImage(source:ImageSource.gallery);
+      setState(() {
+        _imagePath = image;
+      });
+    }
+    Widget _imageView(imagePath){
+      if(imagePath == null){
+        return Container(
+          width: 350.w,
+          height: 150.h,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("images/screen.jpg"),
+                  fit: BoxFit.cover
+              )
+          ),
+        );
+      }
+      else{
+        return Container(
+          width: 350.w,
+          height: 150.h,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: FileImage(imagePath),
+                  fit: BoxFit.cover
+              )
+          ),
+        );
+      }
     }
     return Scaffold(
       body: CustomScrollView(
@@ -39,16 +72,10 @@ class _info extends State<info_page>{
               background: Container(
                 child: Stack(
                   children: [
-                      Container(
-                        width: 350.w,
-                        height: 150.h,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("images/screen.jpg"),
-                            fit: BoxFit.cover
-                          )
-                        ),
-                      ),
+                  GestureDetector(
+                    onTap:openGallery,
+                    child: _imageView(_imagePath),
+                  ),
                    Container(
                      margin: EdgeInsets.fromLTRB(10.w, 125.h, 0, 0),
                      child: Column(

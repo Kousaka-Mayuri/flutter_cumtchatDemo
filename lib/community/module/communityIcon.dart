@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_cumtchat/community/community_expandPage.dart';
 class communityIcon extends StatelessWidget{
   final String imgSrc;
-  final Function() click;
+  final Function(String community) click;
   final String text;
   const communityIcon(this.imgSrc,this.click,this.text,{Key key});
   @override
@@ -26,7 +25,7 @@ class communityIcon extends StatelessWidget{
             ),
 
       onTap: (){
-        click();
+        click(text);
       },
     );
   }

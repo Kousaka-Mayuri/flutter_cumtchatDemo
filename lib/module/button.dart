@@ -60,8 +60,8 @@ class homeClickButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40,
-      height: 40,
+      width: 40.w,
+      height: 40.w,
       child: IconButton(
             icon: Image.asset(src),
             onPressed: (){
@@ -69,7 +69,7 @@ class homeClickButton extends StatelessWidget{
               click();
             },
           ),
-      margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+      margin: EdgeInsets.fromLTRB(0, 0, 10.w, 0),
     );
   }
 }//主页上端点击按钮

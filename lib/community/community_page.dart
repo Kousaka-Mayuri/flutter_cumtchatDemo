@@ -9,14 +9,14 @@ class community_page extends StatefulWidget{
 
 class communityPage extends State<community_page>{
   @override
-  click1(){
+  click1(String community){
     /*Navigator.push(context,MaterialPageRoute(builder: (_)=>communityExPandCard("Bangdream")));*/
       Navigator.of(context).push(
         PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation<double> animation,
               Animation<double> secondaryAnimation) {
             //目标页面
-            return communityExPandCard();
+            return communityExPandCard(community: community,);
           },
           //打开新的页面用时
           transitionDuration: Duration(milliseconds: 400),

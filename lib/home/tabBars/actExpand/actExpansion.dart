@@ -35,7 +35,7 @@ class _actExpand extends State<actExpansion>
                       color: Colors.black,
                       icon: Icon(Icons.share),
                       onPressed:() {
-
+                        share();
                       })
                 ],
                 backgroundColor: Color.fromARGB(255, 119, 52, 96),
