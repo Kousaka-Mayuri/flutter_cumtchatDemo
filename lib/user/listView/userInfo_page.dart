@@ -182,7 +182,7 @@ class _info extends State<info_page>{
               )
             ),
             title: Container(
-              child: Text("王逸鸣的主页",style: TextStyle(color: Colors.black),),
+              child: Text(user.nickname+"的主页",style: TextStyle(color: Colors.black),),
             ),
             backgroundColor: Colors.white,
             floating: true,

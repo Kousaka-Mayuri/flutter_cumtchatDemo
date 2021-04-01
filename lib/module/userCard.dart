@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_cumtchat/module/conShadow.dart';
 import 'package:flutter_cumtchat/module/stateCard.dart';
@@ -85,7 +86,7 @@ class _user extends State<userCard>{
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text("王逸鸣",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                              Text(user.nickname,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
                               Container(
                                 width: 10.w,
                               ),
@@ -110,7 +111,7 @@ class _user extends State<userCard>{
                           ),),
                         ),
                         Container(
-                          child: Text("经验100/2000",style: TextStyle(fontSize: 10.sp,
+                          child: Text(user.exp.toString()+" 经验",style: TextStyle(fontSize: 11.sp,
                               color: HexColor("#A8A8A8")),),
                         )
                       ],

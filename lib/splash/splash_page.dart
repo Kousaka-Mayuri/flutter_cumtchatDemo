@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class splash extends StatefulWidget{
@@ -8,16 +9,38 @@ class splash extends StatefulWidget{
 
 class _splash extends State<splash>
 {
+  bool haveToken;
   void goHome() {
     Navigator.of(context).pushReplacementNamed('/login');
   }
+  void goMain(){
+    Navigator.of(context).pushReplacementNamed('/main');
+  }
+
   void setTime(){
     var _duration = new Duration(seconds: 2);
-    Future.delayed(_duration,goHome);
+    if(haveToken){
+      Future.delayed(_duration,goMain);
+    }
+    else{
+      Future.delayed(_duration,goHome);
+    }
+  }
+  getIsLogin(){
+    try{
+      user.token = user.prefs.getString('token');
+      user.username = user.prefs.getString('username');
+      print("object1");
+    }catch(e){
+      haveToken =false;
+      print('object');
+    }
   }
   @override
   void initState() {
     super.initState();
+    haveToken =true;
+    getIsLogin();
     setTime();
   }
   @override

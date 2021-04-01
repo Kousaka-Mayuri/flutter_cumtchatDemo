@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/http.dart';
 import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,7 +62,7 @@ class alter_page extends State<alterPage>{
               content: TextField(
                 onChanged: (String value){
                   setState(() {
-                        name = value;
+                        user.willNickname = value;
                   });
                 },
               ),
@@ -69,7 +70,8 @@ class alter_page extends State<alterPage>{
               FlatButton(onPressed: (){Navigator.of(context).pop();}, child: Text("再想想")),
               FlatButton(onPressed: (){
                 setState(() {
-                  user.name = name;
+                  user.nickname = user.willNickname;
+                  http.alertNickname();
                 });
                 Navigator.of(context).pop();
               }, child: Text("我确认"))
@@ -231,7 +233,7 @@ class alter_page extends State<alterPage>{
                               children: [Container(
                                 alignment: Alignment.centerRight,
                                 width: 200.w,
-                                child: Text(user.name,maxLines: 1,style: userDataText,),
+                                child: Text(user.nickname,maxLines: 1,style: userDataText,),
                               ),
                                 rightArrows(),],
                             ))

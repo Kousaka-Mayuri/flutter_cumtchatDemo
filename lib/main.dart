@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/home/home_page.dart';
 import 'package:flutter_cumtchat/login/login_page.dart';
+import 'package:flutter_cumtchat/main_page.dart';
 import 'package:flutter_cumtchat/splash/splash_page.dart';
 import 'package:flutter_cumtchat/user/ListView/settings_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,11 +20,12 @@ class MyApp extends StatelessWidget {
           routes: <String,WidgetBuilder>{
             '/login':(BuildContext context) => login(),
             '/home':(BuildContext context) => home_page(),
+            '/main':(BuildContext context) => main_page(),
             '/settings':(BuildContext context) => settings_page()
           },
           title: '矿且',
           debugShowCheckedModeBanner: false,
-          home:splash(),
+          home:login(),
         )
         );
   }
