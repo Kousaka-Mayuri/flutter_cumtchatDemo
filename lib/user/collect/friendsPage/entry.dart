@@ -12,6 +12,15 @@ class entry extends StatefulWidget{
 }
 
 class _entry extends State<entry>{
+  int count;
+  @override
+  void initState() {
+    super.initState();
+
+    if(widget.dataList == null)
+      count = 0;
+    else count = widget.dataList.length;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +28,7 @@ class _entry extends State<entry>{
         color: HexColor("#FFFFFF")
       ),
         child: ListView.builder(
-          itemCount: widget.dataList.length,
+          itemCount: count,
           itemBuilder: (BuildContext context,int index){
             return GestureDetector(
                 onTap: (){

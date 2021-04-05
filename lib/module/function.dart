@@ -1,37 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_cumtchat/home/tabBars/actExpand/actExpansion.dart';
-jumpActivityHero(BuildContext context){
-  Navigator.of(context).push(
-    PageRouteBuilder(
-      pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation) {
-        //目标页面
-        return actExpansion();
-      },
-      //打开新的页面用时
-      transitionDuration: Duration(milliseconds: 800),
-      //关半页岩用时
-      reverseTransitionDuration: Duration(milliseconds: 800),
-      //过渡动画构建
-      transitionsBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-          ) {
-        //渐变过渡动画
-        return FadeTransition(
-          // 透明度从 0.0-1.0
-          opacity: Tween(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-              parent: animation,
-              //动画曲线规则，这里使用的是先快后慢
-              curve: Curves.fastOutSlowIn,
-            ),
-          ),
-          child: child,
-        );
-      },
-    ),
-  );
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:convert';
+
+String decodeBase64(String data){
+  return String.fromCharCodes(base64Decode(data));
+}
+
+String encodeBase64(String data){
+  var content = utf8.encode(data);
+  var digest = base64Encode(content);
+  return digest;
+}
+
+Future<String> imageToBase64(File file) async {
+  List<int> imageBytes = await file.readAsBytes();
+  print('图片大小:' + imageBytes.length.toString());
+  print("转移后的"+base64Encode(imageBytes));
+  return  base64Encode(imageBytes);
 }

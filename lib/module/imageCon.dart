@@ -14,6 +14,37 @@ class imageCon extends StatelessWidget{
       highlightColor: Colors.transparent,
       radius: 0,
       onTap: (){
+        Navigator.of(context).push(FadeRoute(
+            page:PhotoViewSimpleScreen(
+          imageProvider: NetworkImage(src),
+          heroTag: 'simple',
+          maxScale: 2.0,
+          minScale: 1.0,
+        )));
+      },
+      child: Container(
+        width: 80.w,
+        height: 80.w,
+        margin: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
+        child: Image.network(src,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+class imageCon1 extends StatelessWidget{
+  final String src;
+  final Double width;
+  final Double height;
+  const imageCon1(this.src,{Key key,this.width,this.height}):super(key:key);
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      highlightColor: Colors.transparent,
+      radius: 0,
+      onTap: (){
         Navigator.of(context).push(FadeRoute(page:PhotoViewSimpleScreen(
           imageProvider: AssetImage(src),
           heroTag: 'simple',

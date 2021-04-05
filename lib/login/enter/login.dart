@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/activity.dart';
 import 'package:flutter_cumtchat/data/http.dart';
 import 'package:flutter_cumtchat/data/user.dart';
+import 'package:flutter_cumtchat/home/home_page.dart';
+import 'package:flutter_cumtchat/home/tabBars/activity.dart';
 import 'package:flutter_cumtchat/main_page.dart';
 import 'package:flutter_cumtchat/module/button.dart';
+import 'package:flutter_cumtchat/module/function.dart';
 import 'package:flutter_cumtchat/module/textField.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -20,7 +26,27 @@ showToast(String msg){
 class enter_page extends State<enter>{
   TextEditingController usernameControl = new TextEditingController();
   TextEditingController passwordControl = new TextEditingController();
+  bool isGetData = false;
+  var activityUrl = 'https://moreover.atcumt.com/posts/post/1/1';
 
+  Future getActivity() async{
+    Dio dio = new Dio();
+    Response response = await dio.get(
+        'https://moreover.atcumt.com/posts/post/'+actInfo.page.toString()+'/1',
+        options: Options(
+            headers: {
+              "token":user.token
+            }
+        ));
+    actInfo.activityList= response.data['data']['content'];
+    actInfo.thisCount = response.data['totalElements'];
+    if(true){
+      actInfo.allPage = 2;
+    }
+    else{
+      actInfo.allPage = ((actInfo.thisCount/1) as int) + 1;
+    }
+  }
   getUsername(){
     user.username = usernameControl.text;
     print(user.username);
@@ -31,11 +57,70 @@ class enter_page extends State<enter>{
   }
   @override
   Widget build(BuildContext context) {
+    Loading(){
+      showDialog(
+          context: context,
+          builder: (context){
+            return LoadingDialog();
+          }
+      );
+    }
     goHome() {
+      showToast("登录成功");
       Navigator.of(context).pushAndRemoveUntil(
           new MaterialPageRoute(builder: (context)=>main_page()),(route)=> route == null);
     }
-    loginHttp() async{
+    var fans = 'https://moreover.atcumt.com/userinfo/followers/'+(user.username = user.username ?? "");
+    var attentions = 'https://moreover.atcumt.com/userinfo/follow/'+(user.username = user.username ?? "");
+    getFans()async{
+      Dio dio = new Dio();
+      Response response = await dio.get(fans,
+          options: Options(
+              headers: {
+                'token':user.token
+              }
+          )
+      );
+      print(response.data);
+      user.fansList = response.data['data'];
+      print("获取粉丝列表");
+    }
+    getAttention()async{
+      Dio dio = new Dio();
+      Response response = await dio.get(
+          attentions,
+          options: Options(
+              headers: {
+                'token':user.token
+              }
+          )
+      );
+      print(response.data);
+      user.attentionList = response.data['data'];
+      print("获取关注列表");
+    }
+    Future getInfo()async
+    {
+      Dio dio = new Dio();
+      Response response = await dio.get(
+          info,
+          options:Options(
+              headers: {
+                'token':user.token
+              }
+          )
+      );
+
+      user.head = response.data['data']['head'];
+      user.getBytes();
+      user.exp = response.data['data']['exp'];
+      user.nickname = response.data['data']['nickname'];
+      getAttention();
+      getFans();
+    }
+    loginHttp() async
+    {
+      Loading();
       Dio dio = new Dio();
       (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client){
         client.badCertificateCallback = (cert,host,port){
@@ -52,16 +137,12 @@ class enter_page extends State<enter>{
         user.saveToken(response.data['data']['token']);
         user.saveUsername(user.username);
         user.token = response.data['data']['token'];
-        print(user.username);
-        print(user.token);
-        print(response.data['data']['token']);
-        goHome();
-        showToast("登录成功");
+        getInfo().then((value) => getActivity().then((value) => goHome()));
       }
       else{
+        Navigator.pop(context);
         showToast("用户名或密码错误");
       }
-      print(response.data);
     }
     return Container(
       alignment: Alignment.center,
@@ -79,3 +160,30 @@ class enter_page extends State<enter>{
   }
 
 }
+
+class LoadingDialog extends Dialog {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Material(
+      type: MaterialType.transparency,
+      child: new Center(
+        child: new Container(
+          decoration: new ShapeDecoration(
+              color: Colors.white,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.all(new Radius.circular(10)))),
+          width: 100,
+          height: 100,
+          padding: EdgeInsets.all(10),
+          child: new Column(children: <Widget>[
+            CircularProgressIndicator(),
+            new Text('正在加载...',style: TextStyle(fontSize: 12,color: Colors.grey),softWrap: false,)
+          ],mainAxisAlignment: MainAxisAlignment.spaceEvenly,),
+        ),
+      ),
+    );
+  }
+
+}
+

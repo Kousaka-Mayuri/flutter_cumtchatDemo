@@ -36,6 +36,8 @@ dependencies:
   flutter_share_me: ^0.9.1
   like_button: ^1.0.4
   shared_preferences: ^0.5.12+4
+  pull_to_refresh: ^1.6.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

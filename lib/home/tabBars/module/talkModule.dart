@@ -202,9 +202,9 @@ class talk_card extends State<talkCard>{
                     margin: EdgeInsets.fromLTRB(0, 10.w, 0, 10.w),
                     child: Wrap(
                       children:<Widget >[
-                        imageCon('images/cai.jpg'),
-                        imageCon('images/cai2.jpg'),
-                        imageCon('images/cai3.jpg')
+                        imageCon1('images/cai.jpg'),
+                        imageCon1('images/cai2.jpg'),
+                        imageCon1('images/cai3.jpg')
                       ],
                     ),
                   ),
@@ -506,9 +506,9 @@ class talk_expand extends State<talkExpand>
                                   child: Wrap(
                                     spacing: 20.w,
                                     children:<Widget> [
-                                      imageCon('images/cai.jpg'),
-                                      imageCon('images/cai2.jpg'),
-                                      imageCon('images/cai3.jpg')
+                                      imageCon1('images/cai.jpg'),
+                                      imageCon1('images/cai2.jpg'),
+                                      imageCon1('images/cai3.jpg')
                                     ],
                                   ),
                                 ),

@@ -20,7 +20,6 @@ with SingleTickerProviderStateMixin{
     super.initState();
     _tabController = new TabController(
         initialIndex: widget.initIndex,length: 2, vsync: this);
-
   }
   @override
   Widget build(BuildContext context) {

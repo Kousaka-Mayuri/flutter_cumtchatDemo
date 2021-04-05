@@ -1,8 +1,12 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/data/http.dart';
 import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
+import 'package:flutter_cumtchat/module/function.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
@@ -18,7 +22,7 @@ class alter_page extends State<alterPage>{
   String name;
   var _imagePath;
   Widget _imageView(imagePath){
-    if(imagePath == null){
+    if(user.head == null){
       return Container(
         width: 70.w,
         height: 70.w,
@@ -38,18 +42,38 @@ class alter_page extends State<alterPage>{
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(60.w),
             image: DecorationImage(
-                image: FileImage(imagePath),
+                image: MemoryImage(user.bytes),
                 fit: BoxFit.cover
             )
         ),
       );
     }
   }
+  var head = 'https://moreover.atcumt.com/userinfo//userinfo';
+  putHead()async{
+    Dio dio = new Dio();
+    Response response = await dio.put(
+        head,
+        options: Options(
+            headers: {
+              'token':user.token
+            }
+        ),
+        data: {
+          'head':user.head
+        }
+    );
+    print(response.data);
+  }
   openGallery()async{
     var image = await ImagePicker.pickImage(source:ImageSource.gallery);
     setState(() {
       _imagePath = image;
     });
+    user.head = await imageToBase64(image);
+    user.getBytes();
+    print("1111"+user.head);
+    putHead();
   }
   @override
   Widget build(BuildContext context) {
@@ -174,6 +198,9 @@ class alter_page extends State<alterPage>{
                 InkWell(
                   onTap: (){
                     openGallery();
+                    setState(() {
+
+                    });
                   },
                   child: Container(
 

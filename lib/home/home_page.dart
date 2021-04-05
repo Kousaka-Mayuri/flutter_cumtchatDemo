@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cumtchat/globalKey/globalKey.dart';
+import 'package:flutter_cumtchat/data/activity.dart';
+import 'package:flutter_cumtchat/data/http.dart';
+import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/home/tabBars/activity.dart';
 import 'package:flutter_cumtchat/home/tabBars/question.dart';
 import 'package:flutter_cumtchat/home/tabBars/talk.dart';
@@ -11,7 +14,6 @@ class home_page extends StatefulWidget{
   @override
   homePage createState() => homePage();
 }
-
 
 class homePage extends State<home_page>
 with SingleTickerProviderStateMixin{

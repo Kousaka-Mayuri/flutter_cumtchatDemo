@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/user.dart';
 import 'package:flutter_cumtchat/user/collect/friendsPage/entry.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class fans extends StatefulWidget{
@@ -22,7 +23,7 @@ class fans_page extends State<fans>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: entry(dataList)
+      child: entry(user.fansList)
     );
   }
 }

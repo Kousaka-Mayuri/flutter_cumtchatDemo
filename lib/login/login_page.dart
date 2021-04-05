@@ -1,13 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_cumtchat/home/tabBars/activity.dart';
-import 'package:flutter_cumtchat/home/tabBars/talk.dart';
+import 'package:flutter_cumtchat/data/activity.dart';
+import 'package:flutter_cumtchat/home/home_page.dart';
 import 'package:flutter_cumtchat/login/enter/login.dart';
 import 'package:flutter_cumtchat/login/register/register.dart';
-import 'package:flutter_cumtchat/module/button.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
-import 'package:flutter_cumtchat/module/textField.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class login extends StatefulWidget{
   @override
@@ -120,5 +117,12 @@ class login_page extends State<login> with SingleTickerProviderStateMixin {
               )
           ),
         );
+
+  }
+  @override
+  void dispose() {
+    super.dispose();
+
+
   }
 }

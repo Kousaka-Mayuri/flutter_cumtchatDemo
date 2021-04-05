@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/module/cardCon.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class actExpansion extends StatefulWidget{
+  final String id;
+  final String time;
+  final String location;
+  final int star;
+  final String detail;
+  final List picList;
+  final String title;
+  final String publisher;
+  final List exPicList;
   @override
+  const actExpansion({Key key,this.id,this.time,this.location,this.star,this.detail,this.picList,this.title,this.publisher,this.exPicList});
   _actExpand createState() => _actExpand();
 }
 
@@ -14,7 +24,7 @@ class _actExpand extends State<actExpansion>
   }
   @override
   Widget build(BuildContext context) {
-    return Hero(tag: 'activity',
+    return Hero(tag: widget.id,
         child: Material(
         child: Scaffold(
           body: CustomScrollView(
@@ -61,9 +71,8 @@ class _actExpand extends State<actExpansion>
                             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Column(
                               children:<Widget> [
-                                Text("活动：欣赏风景",style: TextStyle(color: Colors.white,fontSize: 12.sp),),
-                                Divider(),
-                                Text("发布者：王逸鸣",style: TextStyle(color: Colors.black,fontSize: 10.sp),)
+                                Text("活动："+widget.title,style: TextStyle(color: Colors.white,fontSize: 12.sp),),
+                                Text("发布者："+widget.publisher,style: TextStyle(color: Colors.black,fontSize: 10.sp),)
                               ],
                             )
                         )
@@ -82,7 +91,14 @@ class _actExpand extends State<actExpansion>
                             children: [
                               Container(
                                   padding: EdgeInsets.all(20.w),
-                                  child:expandCard(700.h,350.w)
+                                  child:expandCard(
+                                      700.h,350.w,
+                                      time: widget.time,
+                                      location: widget.location,
+                                      star: widget.star,
+                                      description: widget.detail,
+                                      picList: widget.picList,
+                                  )
                               )
                             ],
                           )

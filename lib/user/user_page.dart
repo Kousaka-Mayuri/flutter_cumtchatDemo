@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/http.dart';
 import 'package:flutter_cumtchat/login/login_page.dart';
 import 'package:flutter_cumtchat/module/cardCon.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
@@ -9,9 +10,8 @@ import 'package:flutter_cumtchat/user/ListView/settings_page.dart';
 import 'package:flutter_cumtchat/user/collect/collectPage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter_cumtchat/module/button.dart';
-import 'package:oktoast/oktoast.dart';
+
 class user_page extends StatefulWidget{
   @override
   _user_page createState() => _user_page();
@@ -19,6 +19,11 @@ class user_page extends StatefulWidget{
 
 class _user_page extends State<user_page>
 {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   showFeedback(){
     showDialog(context: context,builder: (context){
@@ -59,7 +64,8 @@ class _user_page extends State<user_page>
           setState(() {
             isSigned = true;
           });
-          showToast("您已签到成功，经验+3");
+
+          showToast("您已签到成功，经验+100");
           Navigator.of(context).pop();
         },
         child: Text("未签到"),

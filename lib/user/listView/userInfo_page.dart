@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cumtchat/data/activity.dart';
 import 'package:flutter_cumtchat/data/user.dart';
+import 'package:flutter_cumtchat/home/tabBars/activity.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_cumtchat/module/stateCard.dart';
@@ -96,7 +98,7 @@ class _info extends State<info_page>{
                                      ),
                                      borderRadius: BorderRadius.circular(60.w),
                                      image: DecorationImage(
-                                         image: AssetImage("images/touxiang.jpg"),
+                                         image: MemoryImage(user.bytes),
                                          fit: BoxFit.cover
                                      )
                                  ),
@@ -202,10 +204,20 @@ class _info extends State<info_page>{
                         child:ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: 1,
+                          itemCount: actInfo.activityList.length,
                           itemBuilder: (context,index){
                             return
-                              actCard();
+                              actCard(
+                                title: actInfo.activityList[index]['title'],
+                                picList: actInfo.activityList[index]['thumbnailImage'],
+                                location: actInfo.activityList[index]['location'],
+                                time: actInfo.activityList[index]['startTime']+'-'+actInfo.activityList[index]['cutoffTime'],
+                                detail: actInfo.activityList[index]['detail'],
+                                id: actInfo.activityList[index]['id'],
+                                description: actInfo.activityList[index]["outline"],
+                                publisher: actInfo.activityList[index]['publisher'],
+                                star: actInfo.activityList[index]['star'],
+                              );
                           },
                         ),
                       )

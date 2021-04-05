@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cumtchat/community/module/communityIcon.dart';
 import 'package:flutter_cumtchat/community/releasePage.dart';
 import 'package:flutter_cumtchat/home/tabBars/module/talkModule.dart';
-import 'package:flutter_cumtchat/home/tabBars/talk.dart';
-import 'package:flutter_cumtchat/module/cardCon.dart';
 import 'package:flutter_cumtchat/module/colors.dart';
-import 'package:flutter_cumtchat/module/function.dart';
 import 'package:flutter_cumtchat/module/textStyle.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_cumtchat/community/module/communityIcon.dart';
 
 class communityExPandCard extends StatefulWidget{
   final String community;

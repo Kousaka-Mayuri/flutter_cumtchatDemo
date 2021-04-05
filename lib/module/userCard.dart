@@ -16,7 +16,7 @@ class _user extends State<userCard>{
   @override
   var _imagePath;
   Widget _imageView(imagePath){
-    if(imagePath == null){
+    if(user.head == null){
       return Container(
         width: 70.w,
         height: 70.w,
@@ -36,19 +36,14 @@ class _user extends State<userCard>{
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(60.w),
             image: DecorationImage(
-                image: FileImage(imagePath),
+                image: MemoryImage(user.bytes),
                 fit: BoxFit.cover
             )
         ),
       );
     }
   }
-  openGallery()async{
-    var image = await ImagePicker.pickImage(source:ImageSource.gallery);
-    setState(() {
-      _imagePath = image;
-    });
-  }
+
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -73,7 +68,7 @@ class _user extends State<userCard>{
                     child: InkWell(
                       child: _imageView(_imagePath),
                       onTap: (){
-                        openGallery();
+
                       },
                     ),
                   ),
@@ -90,9 +85,9 @@ class _user extends State<userCard>{
                               Container(
                                 width: 10.w,
                               ),
-                              Text("LV 5",style: TextStyle(
+                              /*Text("LV 5",style: TextStyle(
                                 fontSize: 11.sp,
-                              ),),
+                              ),),*/
                             ],
                           ),
                         ),
